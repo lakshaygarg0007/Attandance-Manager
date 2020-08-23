@@ -1,0 +1,30 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+<body style="background-image: linear-gradient(red,yellow);">
+	<h2 style="text-align: center;color: red;font-family: Verdana;border: 1px solid black;background-color:black;color: white;margin-top: 8px;">Attendance Manager	</h2>
+	<div class = "container" >
+		<h3 style="text-align: left;font-family: monospace;color: black;font-weight: bold;">Sign Up</h3>
+		<br>
+		{% from "_formhelpers.html" import render_field %}
+		<form method=post action="/register/">
+			<dl style="text-align: left;font-family:monospace;font-size: 16.6px;color:black;">
+				{{render_field(form.username)}}<br>	
+				{{render_field(form.email)}}<br>	
+				{{render_field(form.password)}}<br>
+				{{render_field(form.confirm)}}<br>	
+				{{render_field(form.accept_tos)}}
+			</dl>
+			<p align="left" style="font-family: Verdana;font-size: 17.3px;"><input type=submit value=SignUp style="border :1.0px black solid;"></p>
+		</form>
+		
+		{% if error %}
+			<p class="error"><strong>Error:</strong>{{error}}</p>
+		{% endif %}
+
+	</div>
+</body>
+
+{% endblock %}
+ 

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attendance Manager</title>
+    <style>
+    body.modal-open {
+    margin-right: 0 !important;
+    padding-right: 8px !important;
+        }
+</style>
+<style>
+ /* Style the video: 100% width and height to cover the entire window */
+  #myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+/* Add some content at the bottom of the video/page */
+  .content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+  }
+
+/* Style the button used to pause/play the video */
+  #myBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #myBtn:hover {
+    background: #ddd;
+    color: black;
+  } 
+</style>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<header style="margin-top: 0px;">
+   <!-- The video -->
+   
+  <video autoplay muted loop id="myVideo">
+  <source src="{{ url_for('static', filename='videos/rain.mp4') }}" type="video/mp4">
+  </video>
+
+ <!--  Optional: some overlay text to describe the video 
+  --><div class="content">
+  <h1>Welcome to Attendance Manager</h1> 
+  <button id="myBtn" onclick="myFunction()">Pause</button>
+  </div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+  
+    <div class="navbar-header">
+          <a class="navbar-brand"  target="_blank" style="color: white;">Attendance Management</a>
+        </div>
+
+  <ul class="nav navbar-nav navbar-right">
+      
+    {% if session.logged_in %}
+   <li> <a href="/logout/" "><font color="white"> Logout </font>  </a></li>
+    
+    {% else %}
+    <li><a href="/register/"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+    <li><a href="/login/"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>      
+    {% endif %}
+    <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">More <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+    </ul>
+       </li>
+  </ul>
+</div>
+</nav>  
+
+
+</header> 
+
+<body >
+  <script>
+  // Get the video
+  var video = document.getElementById("myVideo");
+
+  // Get the button
+  var btn = document.getElementById("myBtn");
+
+  // Pause and play the video, and change the button text
+  function myFunction() {
+    if (video.paused) {
+        video.play();
+        btn.innerHTML = "Pause";
+    } else {
+        video.pause();
+        btn.innerHTML = "Play";
+    }
+  }
+  </script>
+</body>
+
+</html>

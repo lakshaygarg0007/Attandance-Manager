@@ -1,0 +1,30 @@
+{% extends "header.html" %}
+
+{% block body %}
+
+<body>
+    <div class="container">
+        <br>
+        <h3 style="color: red; font-family: Verdana;">Please Login:</h3>
+        <br>
+        <form action="" class="form-inline" method="post">
+            <input type="text" class="form-control" placeholder = "Username" name="username" value="{{request.form.username}}" style="font-family: Verdana;"><br><br>
+            <input type="password" class="form-control" placeholder = "Password" name="password" value="{{request.form.password}}" style="font-family: Verdana;"><br> <br>    
+            <input class="btn btn-submit" type="submit" value="Login" style="font-family: Verdana;border: 1px black solid;">
+        </form>
+    </div>
+ <script>
+function myMap() {
+var mapProp= {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+};
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap">
+    myMap();
+</script>
+</body>
+
+{% endblock %}

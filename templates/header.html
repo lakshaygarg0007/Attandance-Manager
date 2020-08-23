@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Python Expert</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+.navbar-custom {
+    background-color: #0066ff;
+    float: none !important;
+}
+/* change the brand and text color */
+.navbar-custom .navbar-brand
+{
+
+  text-align: center;
+}
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+</style>
+{% block bg_style %}
+
+{% endblock %}  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<header>
+  
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+  
+    <div class="navbar-header">
+          <a class="navbar-brand" target="_blank" style="color: white;">Attendance Management</a>
+        </div>
+
+  <ul class="nav navbar-nav navbar-right">
+      
+    {% if session.logged_in %}
+   <li> <a href="/logout/" "><font color="white"> Logout </font>  </a></li>
+    
+    {% else %}
+    <li><a href="/register/"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+    <li><a href="/login/"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>      
+    {% endif %}
+    <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">More <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+    </ul>
+       </li>
+  </ul>
+</div>
+</nav>  
+
+</nav>  
+</header> 
+
+<body>
+
+  <div class="border-row" style="width:100% margin-bottom: 15px"></div>
+  <div class="container-fluid" align="center" style="min-height:100%">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      {{message}}
+      </div>
+    {% endfor %}
+    {% endif %}
+  {% endwith %}
+  </div>  
+  {% block body %} {% endblock %}
+
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>
